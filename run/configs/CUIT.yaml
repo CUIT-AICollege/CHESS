@@ -1,0 +1,33 @@
+setting_name: CHESS_IR_CG_UT
+
+team_agents:
+  information_retriever:
+    engine: 'deepseek-v3'
+    tools:
+      extract_keywords:
+        template_name: 'extract_keywords'
+        engine_config:
+          engine_name: 'deepseek-v3'
+          temperature: 0.2
+        parser_name: 'python_list_output_parser'
+      retrieve_entity: {}
+      retrieve_context:
+        top_k: 5
+
+  candidate_generator:
+    engine: 'deepseek-v3'
+    tools:
+      generate_candidate:
+        generator_configs:
+          - template_name: 'generate_candidate_one' # 递归分治 ecursive divide-and-conquer approach
+            engine_config:
+              engine_name: 'deepseek-v3'
+              temperature: 0.5
+            parser_name: 'generate_candidate_gemini_markdown_cot'
+            sampling_count: 1 # TODO))
+          - template_name: 'generate_candidate_two' # TODO)) 查询计划引导 SQL 生成
+            engine_config:
+              engine_name: 'deepseek-v3' # TODO))
+              temperature: 0.5
+            parser_name: 'generate_candidate_gemini_markdown_cot' # TODO))
+            sampling_count: 1 # TODO))

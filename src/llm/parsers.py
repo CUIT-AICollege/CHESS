@@ -114,10 +114,10 @@ class GenerateCandidateGeminiMarkDownParserCOT(BaseOutputParser):
         """
         logging.debug(f"Parsing output with RecapOutputParserCOT: {output}")
         plan = ""
-        if "<FINAL_ANSWER>" in output and "</FINAL_ANSWER>" in output:
-            plan = output.split("<FINAL_ANSWER>")[0]
-            output = output.split("<FINAL_ANSWER>")[1].split(
-            "</FINAL_ANSWER>"
+        if "<answer>" in output and "</answer>" in output:
+            plan = output.split("<answer>")[0]
+            output = output.split("<answer>")[1].split(
+            "</answer>"
             )[0]
         query = output.replace("```sql", "").replace("```", "").replace("\n", " ")
         return {"SQL": query, "plan": plan}
@@ -165,12 +165,12 @@ class ReviseGeminiOutputParser(BaseOutputParser):
             Dict[str, str]: A dictionary with the SQL query.
         """
         logging.debug(f"Parsing output with CheckerOutputParser: {output}")
-        if "<FINAL_ANSWER>" in output and "</FINAL_ANSWER>" in output:
-            output = output.split("<FINAL_ANSWER>")[1].split(
-            "</FINAL_ANSWER>"
+        if "<answer>" in output and "</answer>" in output:
+            output = output.split("<answer>")[1].split(
+            "</answer>"
             )[0]
-        if "<FINAL_ANSWER>" in output:
-            output = output.split("<FINAL_ANSWER>")[1]
+        if "<answer>" in output:
+            output = output.split("<answer>")[1]
         query = output.replace("```sql", "").replace("```", "").replace("\n", " ")
         return {"refined_sql_query": query}
 

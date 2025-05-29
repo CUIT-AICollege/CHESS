@@ -15,7 +15,7 @@ AGENT_CLASSES = {
     "information_retriever": InformationRetriever,
     "schema_selector": SchemaSelector,
     "candidate_generator": CandidateGenerator,
-    "unit_tester": UnitTester
+    # "unit_tester": UnitTester
 }
 
 class CHESSTeamBuilder:

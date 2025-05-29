@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from langchain_chroma import Chroma
 from langchain.schema.document import Document
 from langchain_openai import OpenAIEmbeddings
+from langchain_ollama import OllamaEmbeddings
 from langchain_google_vertexai import VertexAIEmbeddings
 from google.oauth2 import service_account
 from google.cloud import aiplatform
@@ -27,8 +28,8 @@ if GCP_CREDENTIALS and GCP_PROJECT and GCP_REGION:
     vertexai.init(project=GCP_PROJECT, location=GCP_REGION, credentials=service_account.Credentials.from_service_account_file(GCP_CREDENTIALS))
 
 
-# EMBEDDING_FUNCTION = VertexAIEmbeddings(model_name="text-embedding-004")#OpenAIEmbeddings(model="text-embedding-3-large")
-EMBEDDING_FUNCTION = OpenAIEmbeddings(model="text-embedding-3-large")
+EMBEDDING_FUNCTION = OllamaEmbeddings(model="bge-m3")
+# EMBEDDING_FUNCTION = OpenAIEmbeddings(model="text-embedding-3-large")
 
 
 def make_db_context_vec_db(db_directory_path: str, **kwargs) -> None:

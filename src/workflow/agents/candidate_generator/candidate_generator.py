@@ -19,5 +19,5 @@ class CandidateGenerator(Agent):
 
         self.tools = {
             "generate_candidate": GenerateCandidate(**config["tools"]["generate_candidate"]),
-            "revise": Revise(**config["tools"]["revise"])
+            # "revise": Revise(**config["tools"]["revise"])
         }

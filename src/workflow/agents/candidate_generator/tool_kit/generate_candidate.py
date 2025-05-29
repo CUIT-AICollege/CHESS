@@ -44,7 +44,7 @@ class GenerateCandidate(Tool):
             for i in range(generator_config.sampling_count):
                 try:
                     request_kwargs = {
-                        "DATABASE_SCHEMA": state.get_schema_string(schema_type="complete"),
+                        "DATABASE_SCHEMA": state.get_schema_string(schema_type="complete"), # 全部的Schema
                         "QUESTION": state.task.question,
                         "HINT": state.task.evidence,
                     }

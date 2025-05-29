@@ -36,10 +36,11 @@ Each configuration includes a constructor, parameters, and an optional preproces
 """
 
 ENGINE_CONFIGS: Dict[str, Dict[str, Any]] = {
-    "gemini-pro": {
+    "gemini-2.5-flash": {
         "constructor": ChatGoogleGenerativeAI,
-        "params": {"model": "gemini-pro", "temperature": 0},
-        "preprocess": lambda x: x.to_messages()
+        "params": {"model": "models/gemini-2.0-flash", "temperature": 0, "safety_settings": safety_settings},
+        # "base_uri": "https://apiv2.aliyahzombie.top"
+        # "preprocess": lambda x: x.to_messages()
     },
     "gemini-1.5-pro": {
         "constructor": VertexAI,
@@ -52,6 +53,10 @@ ENGINE_CONFIGS: Dict[str, Dict[str, Any]] = {
     "gemini-1.5-flash":{
         "constructor": VertexAI,
         "params": {"model": "gemini-1.5-flash", "temperature": 0, "safety_settings": safety_settings}
+    },
+    "gemini-2.0-flash": {
+        "constructor": ChatGoogleGenerativeAI,
+        "params": {"model": "models/gemini-2.0-flash", "temperature": 0, "safety_settings": safety_settings}
     },
     "picker_gemini_model": {
         "constructor": VertexAI,
@@ -91,7 +96,7 @@ ENGINE_CONFIGS: Dict[str, Dict[str, Any]] = {
     },
     "gpt-4o-mini": {
         "constructor": ChatOpenAI,
-        "params": {"model": "gpt-4o-mini", "temperature": 0}
+        "params": {"model": "gpt-4o-mini", "temperature": 0, "openai_api_base": "https://chat.wenwen12345.top/api/v1", "openai_api_key": "sk-703256f43f86d8188a4e6ba463bebc7fb7c895a88c8bb94bd0da64fc12521693"}
     },
     "claude-3-opus-20240229": {
         "constructor": ChatAnthropic,
@@ -158,5 +163,21 @@ ENGINE_CONFIGS: Dict[str, Dict[str, Any]] = {
                 "stop": [""]
             }
         }
+    },
+    "deepseek-v3": {
+        "constructor": ChatOpenAI,
+        "params": {
+            "model": "deepseek-v3-250324",
+            "openai_api_key": "sk-FbeILf2K0FSyJIVGRzcYxRorbN3SYEcDnX42O7q6hjlOeZgj",
+            "openai_api_base": "https://ai.huan666.de/v1",
+            "temperature": 0,
+            "max_tokens": 600,
+            "stop": [""]
+        }
+    },
+    "claude-3.7-sonnet-20250219": {
+        "constructor": ChatOpenAI,
+        "params": {"model": "claude-3.7-sonnet-20250219", "temperature": 0, "openai_api_key": "sk-SJltxsAINP5qis4CjfLdpuyGSKygOvfZOPJz3voOgKfUtH9t",
+                   "openai_api_base": "https://ai.cloneai.top/v1"}
     }
 }

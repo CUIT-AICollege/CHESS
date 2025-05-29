@@ -3,6 +3,7 @@ import difflib
 from typing import List, Dict, Any, Tuple, Optional
 
 from langchain_openai import OpenAIEmbeddings
+from langchain_ollama import OllamaEmbeddings
 from google.oauth2 import service_account
 from google.cloud import aiplatform
 import vertexai
@@ -31,7 +32,8 @@ class RetrieveEntity(Tool):
 
     def __init__(self):
         super().__init__()
-        self.embedding_function = OpenAIEmbeddings(model="text-embedding-3-small")
+        # self.embedding_function = OpenAIEmbeddings(model="bge-m3", openai_api_base="http://localhost:11434/v1")
+        self.embedding_function = OllamaEmbeddings(model="bge-m3")
         self.edit_distance_threshold = 0.3
         self.embedding_similarity_threshold = 0.6
         
